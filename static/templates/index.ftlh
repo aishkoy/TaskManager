@@ -40,6 +40,15 @@
                                         ${day.day}
                                     </span>
                                 </div>
+
+                                    <div class="mt-1 flex flex-wrap gap-1">
+                                        <#list tasks as task>
+                                            <#if task.dayNum == day.day>
+                                                <div class="w-3 h-3 rounded-sm" style="background-color: ${task.taskType.colorCode}"
+                                                     title="${task.title}: ${task.type}"></div>
+                                            </#if>
+                                        </#list>
+                                    </div>
                                 </a>
                             </td>
                         </#if>
