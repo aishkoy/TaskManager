@@ -15,6 +15,10 @@ public class ResponseWriter {
     private ResponseWriter() {}
     private static final String CONTENT_TYPE = "Content-Type";
 
+    public static void showError(HttpExchange exchange, String template, String errorMessage) {
+        ResponseWriter.renderTemplate(exchange, template, Map.of("error", errorMessage));
+    }
+
     public static void showError(HttpExchange exchange, Map<String, Object> data, String template, String errorMessage) {
         data.put("error", errorMessage);
         ResponseWriter.renderTemplate(exchange, template, data);

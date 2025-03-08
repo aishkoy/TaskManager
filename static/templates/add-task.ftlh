@@ -22,7 +22,7 @@
     <div class="p-6 border-b">
         <h2 class="text-xl font-semibold text-gray-800 mb-4">Добавить новую задачу</h2>
         <#include "error-success.ftlh">
-        <form action="/add-task" method="post" class="space-y-4">
+        <form action="/add-task?dayId=${day.day}" method="post" class="space-y-4">
             <input type="hidden" name="dayNum" value="${day.day}">
 
             <div>
