@@ -2,6 +2,8 @@ package utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import models.Task;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,9 +17,18 @@ import java.util.List;
 public class JsonHandler {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
     private static final String DIRECTORY = "data/";
+    private static final Type TASK_TYPE = new TypeToken<List<Task>>(){}.getType();
+
 
     private JsonHandler(){}
 
+    public static List<Task> readTasksJson(String fileName){
+        return readJson(fileName, TASK_TYPE);
+    }
+
+    public static void writeTasksJson(String fileName, List<Task> tasks){
+        writeJson(fileName, tasks, TASK_TYPE);
+    }
 
     private static <T> List<T> readJson(String fileName, Type type) {
         try {

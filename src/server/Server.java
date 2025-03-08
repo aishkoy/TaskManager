@@ -1,7 +1,6 @@
 package server;
 
 import com.sun.net.httpserver.HttpServer;
-import server.handlers.RequestHandler;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
