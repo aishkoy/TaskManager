@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import static utils.ResponseWriter.showError;
+
 public class UrlFormParser {
     private UrlFormParser() {}
 
@@ -46,6 +48,20 @@ public class UrlFormParser {
         return UrlFormParser.parseUrlEncoded(HttpUtils.getBody(exchange), "&");
     }
 
+    public static boolean areFieldsValid(HttpExchange exchange,
+                                   String template, String... fields) {
+        for (String field : fields) {
+            if (field == null || field.isEmpty()) {
+                showError(exchange, template, "Все поля должны быть заполнены.");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static String sanitizeField(Object field) {
+        return field == null || field.toString().trim().isEmpty() ? "" : field.toString().trim();
+    }
     public static int safeParseInt(String value) {
         try {
             return Integer.parseInt(value);
