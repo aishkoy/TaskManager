@@ -6,27 +6,20 @@ public class Task {
     private final int id;
     private int dayNum;
     private String title;
-    private String type;
+    private TaskType taskType;
+
     private String description;
 
-    private String colorCode;
-
-    private transient TaskType taskType;
-
-    public Task(int id,int dayNum, String title, String type, String description) {
+    public Task(int id,int dayNum, String title, TaskType taskType, String description) {
         this.id = id;
         this.dayNum = dayNum;
         this.title = title;
-        this.type = type;
         this.description = description;
-        this.taskType = TaskType.valueOf(type);
-        this.colorCode = taskType.getColorCode();
+        this.taskType = taskType;
     }
 
     public void setTaskType(TaskType taskType) {
         this.taskType = taskType;
-        this.type = taskType.getName();
-        this.colorCode = taskType.getColorCode();
     }
 
     public int getId() {
@@ -40,19 +33,14 @@ public class Task {
         return description;
     }
 
+    public String getType(){
+        return taskType.getName();
+    }
     public TaskType getTaskType() {
         return taskType;
     }
 
-    public String getType() {
-        return type;
-    }
-
     public int getDayNum() {
         return dayNum;
-    }
-
-    public String getColorCode() {
-        return colorCode;
     }
 }
