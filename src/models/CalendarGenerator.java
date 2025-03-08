@@ -1,4 +1,4 @@
-package utils;
+package models;
 
 import java.time.Month;
 import java.time.format.TextStyle;
@@ -59,28 +59,5 @@ public class CalendarGenerator {
         model.put("weeks", weeks);
 
         return model;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(CalendarGenerator.generateCalendarData().get("month"));
-
-    }
-
-    public static class CalendarDay {
-        private final int day;
-        private final boolean isToday;
-
-        public CalendarDay(int day, boolean isToday) {
-            this.day = day;
-            this.isToday = isToday;
-        }
-
-        public int getDay() {
-            return day;
-        }
-
-        public boolean isToday() {
-            return isToday;
-        }
     }
 }
