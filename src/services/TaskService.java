@@ -21,7 +21,13 @@ public class TaskService {
         return taskList;
     }
 
+    public static Task getTaskById(int id) {
+        return tasks.stream().filter(task -> task.getId() == id).findFirst().orElse(null);
+    }
     public static void addTask(Task task) {
+        if(task.getId() == 0) {
+            task.setId(getMaxId()+1);
+        }
         tasks.add(task);
         saveTasks();
     }
@@ -32,6 +38,13 @@ public class TaskService {
     }
 
     public static void saveTasks() {
-        JsonHandler.writeTasksJson("Tasks.json", tasks);
+        JsonHandler.writeTasksJson("tasks.json", tasks);
+    }
+
+    private static int getMaxId(){
+        return tasks.stream()
+                .mapToInt(Task::getId)
+                .max()
+                .orElse(0);
     }
 }
