@@ -14,6 +14,15 @@
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Список задач на ${month} ${year}</h1>
     <#include "error-success.ftlh">
+
+    <p class="text-sm text-gray-600 mb-4">
+        <span class="inline-block w-3 h-3 bg-blue-500 rounded-sm"></span> Обычная задача &nbsp;
+        <span class="inline-block w-3 h-3 bg-red-500 rounded-sm"></span> Срочное дело &nbsp;
+        <span class="inline-block w-3 h-3 bg-purple-500 rounded-sm"></span> Работа &nbsp;
+        <span class="inline-block w-3 h-3 bg-green-500 rounded-sm"></span> Покупки &nbsp;
+        <span class="inline-block w-3 h-3 bg-gray-500 rounded-sm"></span> Прочее
+    </p>
+
     <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
         <table class="w-full border-collapse">
             <thead>
@@ -58,6 +67,7 @@
             </tbody>
         </table>
     </div>
+
 </div>
 </body>
 </body>
