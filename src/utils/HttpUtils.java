@@ -10,7 +10,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -41,18 +40,9 @@ public class HttpUtils {
         String query = exchange.getRequestURI().getQuery();
         return Objects.nonNull(query) ? query : "";
     }
-    public static String getCookie(HttpExchange exchange){
-        return exchange.getRequestHeaders()
-                .getOrDefault("Cookie", List.of(""))
-                .getFirst();
-    }
-
-    public static void setCookie(HttpExchange exchange, Cookie cookies){
-        exchange.getResponseHeaders().add("Set-Cookie", cookies.toString());
-    }
 
     public static void setSuccessCookie(HttpExchange exchange, String message) {
         Cookie errorCookie = Cookie.make("successMessage", message, 3, true);
-        HttpUtils.setCookie(exchange, errorCookie);
+        Cookie.setCookie(exchange, errorCookie);
     }
 }
