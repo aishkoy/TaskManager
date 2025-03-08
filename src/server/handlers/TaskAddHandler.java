@@ -32,10 +32,11 @@ public class TaskAddHandler {
         String taskType = sanitizeField(data.get("taskType"));
         String description = sanitizeField(data.get("description"));
 
-        if(areFieldsValid(exchange, "add-task.ftlh", dayNum, title, taskType)) return;
-
         CalendarDay calendarDay = ModelUtils.getCalendarDay(exchange);
         if(calendarDay == null) return;
+
+        data.put("day", calendarDay);
+        if(areFieldsValid(exchange, data,"add-task.ftlh", dayNum, title, taskType)) return;
 
         if(Arrays.stream(TaskType.values()).noneMatch(t -> t.name().equals(taskType))){
             data.put("day", calendarDay);

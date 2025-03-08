@@ -15,7 +15,7 @@
     <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Список задач на ${month} ${year}</h1>
     <#include "error-success.ftlh">
 
-    <p class="text-sm text-gray-600 mb-4">
+    <p class="text-center text-sm text-gray-600 mb-4">
         <span class="inline-block w-3 h-3 bg-blue-500 rounded-sm"></span> Обычная задача &nbsp;
         <span class="inline-block w-3 h-3 bg-red-500 rounded-sm"></span> Срочное дело &nbsp;
         <span class="inline-block w-3 h-3 bg-purple-500 rounded-sm"></span> Работа &nbsp;

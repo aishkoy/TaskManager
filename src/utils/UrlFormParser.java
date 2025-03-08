@@ -48,11 +48,11 @@ public class UrlFormParser {
         return UrlFormParser.parseUrlEncoded(HttpUtils.getBody(exchange), "&");
     }
 
-    public static boolean areFieldsValid(HttpExchange exchange,
+    public static boolean areFieldsValid(HttpExchange exchange,Map<String, Object> data,
                                    String template, String... fields) {
         for (String field : fields) {
             if (field == null || field.isEmpty()) {
-                showError(exchange, template, "Все поля должны быть заполнены.");
+                showError(exchange,data, template, "Все поля должны быть заполнены.");
                 return true;
             }
         }

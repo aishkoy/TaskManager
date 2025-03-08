@@ -32,13 +32,15 @@ public class TaskEditHandler {
         String taskType = sanitizeField(data.get("taskType"));
         String description = sanitizeField(data.get("description"));
 
-        if(areFieldsValid(exchange, "edit-task.ftlh", taskId, dayNum, title, taskType)) return;
-
         Task task = ModelUtils.getTask(exchange);
         if(task == null) return;
 
         CalendarDay calendarDay = ModelUtils.getCalendarDay(exchange);
         if(calendarDay == null) return;
+
+        data.put("day", calendarDay);
+        data.put("task", task);
+        if(areFieldsValid(exchange, data,"edit-task.ftlh", taskId, dayNum, title, taskType)) return;
 
         if(Arrays.stream(TaskType.values()).noneMatch(t -> t.name().equals(taskType))){
             data.put("day", calendarDay);
