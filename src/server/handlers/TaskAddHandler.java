@@ -2,6 +2,7 @@ package server.handlers;
 
 import com.sun.net.httpserver.HttpExchange;
 import models.CalendarDay;
+import models.CalendarGenerator;
 import models.Task;
 import models.enums.TaskType;
 import services.TaskService;
@@ -20,16 +21,8 @@ import static utils.UrlFormParser.safeParseInt;
 import static utils.UrlFormParser.sanitizeField;
 import static utils.UrlFormParser.areFieldsValid;
 
-public class TaskHandler {
-    private TaskHandler() {}
-    public static void handleDelete(HttpExchange exchange) {
-        Task task = ModelUtils.getTask(exchange);
-        if (task == null) return;
-
-        TaskService.removeTask(task);
-        HttpUtils.setSuccessCookie(exchange, "Вы успешно удалили задачу!");
-        HttpUtils.redirect303(exchange, "/day?dayId=" + task.getDayNum());
-    }
+public class TaskAddHandler {
+    private TaskAddHandler() {}
 
     public static void handlePost(HttpExchange exchange) {
         Map<String, Object> data = UrlFormParser.parseFormData(exchange);
@@ -54,6 +47,14 @@ public class TaskHandler {
         if(day <= 0 || day > 31){
             data.put("day", calendarDay);
             showError(exchange, data, "add-task.ftlh", "Несуществующий день в марте!");
+            return;
+        }
+
+        if(day != calendarDay.getDay()){
+            data = CalendarGenerator.generateCalendarData();
+            data.put("tasks", TaskService.getTasks());
+            data.put("day", calendarDay);
+            showError(exchange, data, "index.ftlh", "Вы не можете добавлять задачи на другой день, не находясь на его странице!");
             return;
         }
 

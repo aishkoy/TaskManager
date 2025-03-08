@@ -31,14 +31,21 @@ public class Task {
     public int getId() {
         return id;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
     public String getTitle() {
         return title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getDescription(){
         return description;
     }
-
     public String getType(){
         return taskType.getName();
     }
@@ -46,6 +53,9 @@ public class Task {
         return taskType;
     }
 
+    public void setDayNum(int dayNum) {
+        this.dayNum = dayNum;
+    }
     public int getDayNum() {
         return dayNum;
     }

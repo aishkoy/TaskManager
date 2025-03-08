@@ -4,10 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import config.RouterConfig;
 import server.enums.ContentType;
 import server.enums.HttpStatus;
-import server.handlers.MainHandler;
-import server.handlers.RouteHandler;
-import server.handlers.DayHandler;
-import server.handlers.TaskHandler;
+import server.handlers.*;
 import utils.FileHandler;
 import utils.ResponseWriter;
 
@@ -21,9 +18,14 @@ public class RequestHandler {
     private void registerRoutes() {
         RouterConfig.registerGet("/", MainHandler::handle);
         RouterConfig.registerGet("/day", DayHandler::handle);
-        RouterConfig.registerGet("/add-task", TaskHandler::handleGet);
-        RouterConfig.registerPost("/add-task", TaskHandler::handlePost);
-        RouterConfig.registerGet("/delete-task", TaskHandler::handleDelete);
+
+        RouterConfig.registerGet("/add-task", TaskAddHandler::handleGet);
+        RouterConfig.registerPost("/add-task", TaskAddHandler::handlePost);
+
+        RouterConfig.registerGet("/delete-task", TaskDeleteHandler::handle);
+
+        RouterConfig.registerGet("/edit-task", TaskEditHandler::handleGet);
+        RouterConfig.registerPost("/edit-task", TaskEditHandler::handlePost);
     }
 
     public void handleRequest(HttpExchange exchange) throws IOException {
