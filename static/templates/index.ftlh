@@ -13,7 +13,7 @@
 <body class="bg-gray-50 font-sans">
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Список задач на ${month} ${year}</h1>
-
+    <#include "error-success.ftlh">
     <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
         <table class="w-full border-collapse">
             <thead>
@@ -34,7 +34,7 @@
                         <#else>
 
                             <td class="border border-gray-200 <#if day.today>bg-blue-100</#if> h-24 p-2 align-top transition-colors hover:bg-gray-50">
-                                <a href="/day?id=${day.day}" class="block w-full h-full">
+                                <a href="/day?dayId=${day.day}" class="block w-full h-full">
                                 <div class="flex justify-between">
                                     <span class="font-semibold text-gray-700">
                                         ${day.day}
